@@ -80,7 +80,7 @@ currenciesRouter.get('/:id', async(request, response) => {
  * @responds by returning the newly created resource
  */
 currenciesRouter.post('/', async(request, response) => {
-  console.log('received POST request')
+  console.log('received POST request ###')
   const currencyCode = request.body.currencyCode;
   const countryId = request.body.countryId;
   const conversionRate = request.body.conversionRate;
@@ -103,7 +103,7 @@ currenciesRouter.post('/', async(request, response) => {
   });
 
  
-  console.log('New CurrencyCode created:');
+  console.log('New CurrencyCode created');
  
   response.json(newCurrencyCode)
 })
@@ -154,7 +154,7 @@ currenciesRouter.delete('/:id', async(request, response) => {
     }
   })
   if (deletedCurrency === 0) {
-      return res.status(404).send({ error: 'currency id not found' });
+      return response.status(404).send({ error: 'currency id not found' });
   }
   
   response.status(204).send();

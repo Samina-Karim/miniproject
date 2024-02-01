@@ -27,17 +27,23 @@ app.use(middleware.unknownEndpoint)// Added middleware for unknown
 
 // Starts our server at PORT 3001
 const PORT = 3007
-sequelize.sync().then(() => {
-  console.log("Database connected");
-  app.listen(PORT, () => {
-    console.log(`Server running on port: ${PORT}`)
-  })
+// sequelize.sync().then(() => {
+//   console.log("Database connected");
+//   app.listen(PORT, () => {
+//     console.log(`Server running on port: ${PORT}`)
+//   })
 
-}).catch((error)=> {
-  console.log("Error connecting database",error);
-}
+// }).catch((error)=> {
+//   console.log("Error connecting database",error);
+// }
 
-)
+// )
+
+const server=  app.listen(PORT, () => {
+  console.log(`Server running on port: ${PORT}`)
+})
+
+module.exports=server;
 
 
 
