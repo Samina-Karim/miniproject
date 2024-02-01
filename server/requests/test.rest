@@ -6,7 +6,7 @@ GET http://localhost:3007/api/currencies/
 GET http://localhost:3007/api/currencyCountryName/
 
 ### Gets currency with id:2
-GET http://localhost:3007/api/currencies/656
+GET http://localhost:3007/api/currencies/62
 
 ###
 POST http://localhost:3007/api/currencies
