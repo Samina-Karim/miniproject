@@ -121,20 +121,22 @@ currenciesRouter.post('/', async(request, response) => {
  * Hint: updates the currency with the new conversion rate
  * @responds by returning the newly updated resource
  */
-currenciesRouter.put('/:id/:newRate', (request, response) => {
+currenciesRouter.put('/:id/:newRate', async(request, response) => {
   console.log('received PUT request');
   const id = Number(request.params.id);
   const newRate=Number(request.params.newRate);
+  
+  await Currency.update({conversionRate: newRate},{
+    where:{
+      id:id
+    }
+  }) 
 
-  const updatedRate= currencies.findByPK(id);
-    
-
-  if(updatedRate.id == undefined){
+  if(id == undefined){
     return response.status(404).send({ error: 'currency missing'})
   }
 
-  updatedRate.conversionRate=newRate;
-  response.json(updatedRate);
+  response.status(204).send();
  
 })
 
