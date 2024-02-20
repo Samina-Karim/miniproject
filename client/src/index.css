@@ -1,0 +1,89 @@
+/* Some defaults for CSS */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box
+}
+
+* {
+  margin: 0;
+  font: inherit;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+body{
+  margin: 0; 
+  padding: 0;
+  font-family: Arial, sans-serif;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  background-color: rgb(32, 45, 111);
+
+}
+
+
+
+
+.PopUpMenu{
+  color:black;
+  width: 300px; 
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+ 
+}
+
+.PopUpMenu h1 {
+  color:  rgb(32, 45, 111);
+  font-weight: bold;
+  font-size: larger;
+}
+
+.PopUpMenu h3 {
+  margin-bottom: 10px;
+}
+
+.PopUpMenu label{
+  display: block;
+  margin-bottom: 5px;
+}
+
+.PopUpMenu input,
+.PopUpMenu #convertedAmount,
+.PopUpMenu #toCC, 
+.PopUpMenu #fromCC,
+.PopUpMenu #deleteCC,
+.PopUpMenu #addCC, 
+.PopUpMenu #countryId,
+.PopUpMenu #updateCC
+{
+  width: calc(100% - 12px);
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.PopUpMenu button{
+  padding: 10px 15px;
+  background-color: rgb(61, 78, 161);
+  /* #007bff; */
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.PopUpMenu button:hover {
+  background-color: #037bfc;
+}
+ 

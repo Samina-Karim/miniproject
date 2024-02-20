@@ -110,10 +110,6 @@ currenciesRouter.post('/', async(request, response) => {
 
 
 
-
-
-
-
 /**
  * TODO: PUT:id endpoint
  * @receives a put request to the URL: http://localhost:3001/api/currency/:id/:newRate
@@ -121,20 +117,22 @@ currenciesRouter.post('/', async(request, response) => {
  * Hint: updates the currency with the new conversion rate
  * @responds by returning the newly updated resource
  */
-currenciesRouter.put('/:id/:newRate', (request, response) => {
+currenciesRouter.put('/:id/:newRate', async(request, response) => {
   console.log('received PUT request');
   const id = Number(request.params.id);
   const newRate=Number(request.params.newRate);
 
-  const updatedRate= currencies.findByPK(id);
+ await Currency.update({conversionRate:newRate}, {
+    where: {
+      id: id,
+    }});
     
 
-  if(updatedRate.id == undefined){
-    return response.status(404).send({ error: 'currency missing'})
-  }
+  // if(updatedRate.id == undefined){
+  //   return response.status(404).send({ error: 'currency missing'})
+  // }
 
-  updatedRate.conversionRate=newRate;
-  response.json(updatedRate);
+  response.status(201).send();
  
 })
 
@@ -154,7 +152,7 @@ currenciesRouter.delete('/:id', async(request, response) => {
     }
   })
   if (deletedCurrency === 0) {
-      return res.status(404).send({ error: 'currency id not found' });
+      return response.status(404).send({ error: 'currency id not found' });
   }
   
   response.status(204).send();
