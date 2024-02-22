@@ -89,6 +89,13 @@ currenciesRouter.post('/', async(request, response) => {
   console.log("Country", countryId);
   console.log("Conversion Rate", conversionRate);
 
+  /********************** Added following code to handle foreign key issue *************************/
+  const findCountryId= await Country.findByPk(countryId);
+  if (findCountryId== null){
+    return response.status(404).send({ error: 'countryId does not exist in Country table' })
+  }
+/**************************************************************************************************/
+
   if ((currencyCode ==undefined) || (countryId==undefined) || (conversionRate == undefined)){
     return response.status(404).send({ error: 'content missing' })
   }
