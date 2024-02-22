@@ -1,14 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "../index.css";
+// import "../index.css";
+import convertCurrency from "../utils/currency_utils";
 import currencyServices from "../services/currenciesApiSrv";
 import countryServices from "../services/countriesApiSrv";
+
 
 const ConvertForm = ({
   handleSelectChange,
   getCurrencyCode,
-  convertedAmount,
-  setConvertedAmount,
+//   convertedAmount,
+//   setConvertedAmount,
   fromCurrency,
   toCurrency,
   resetAllStates,
@@ -16,10 +18,13 @@ const ConvertForm = ({
   currencyData
 }) => {
 
+  const [convertedAmount, setConvertedAmount] = useState(0);
   // Event handler for convert button
   const handleConvertClick = async (e) => {
     e.preventDefault();
-
+    
+    console.log("E",e.target);
+    
     const Amount = e.target.amount.value;
 
     // Find conversion rates for fromCurrency and toCurrency
@@ -31,10 +36,13 @@ const ConvertForm = ({
     const currencyFrom = currencyData.find(
       (currencyFrom) => currencyFrom.currencyCode === fromCurrency
     );
-    const fromConversionRate = currencyFrom.conversionRate;
+    // const fromConversionRate = currencyFrom.conversionRate;
 
     // Calculate converted amount
-    const result = (fromConversionRate / toConversionRate) * Amount;
+    const result = convertCurrency(currencyFrom,currencyTo, Amount);
+        
+        
+    
     setConvertedAmount(result);
 
     // Reset form input
@@ -50,6 +58,7 @@ const ConvertForm = ({
       <form onSubmit={handleConvertClick}>
         <select
           value={fromCurrency}
+          data-testid="testFromCC"
           id="fromCC"
           onChange={handleSelectChange}
           required
@@ -64,6 +73,7 @@ const ConvertForm = ({
 
         <select
           value={toCurrency}
+          data-testid="testToCC"
           id="toCC"
           onChange={handleSelectChange}
           required
@@ -78,6 +88,7 @@ const ConvertForm = ({
 
         <input
           id="amount"
+          data-testid="testAmount"
           name="amount"
           type="number"
           min="0"
@@ -90,7 +101,7 @@ const ConvertForm = ({
         <br></br>
         <label htmlFor="convertedAmount"> Converted Amount </label>
         <div>
-          <h1>{parseFloat(convertedAmount).toFixed(2)}</h1>
+          <h1 data-testid="conv" >{Math.round(convertedAmount)}</h1>
         </div>
 
         <br></br>

@@ -30,7 +30,7 @@ const App = () => {
   const [currencyData, setCurrencyData] = useState([]);
   const [countryData, setCountryData] = useState([]);
   const [countryId, setCountryId] = useState("");
-  const [convertedAmount, setConvertedAmount] = useState(0);
+  // const [convertedAmount, setConvertedAmount] = useState(0);
 
   // Effect hook to synchronize currency and country data
   useEffect(() => {
@@ -117,8 +117,8 @@ const App = () => {
       <ConvertForm
         handleSelectChange={handleSelectChange}
         getCurrencyCode={getCurrencyCode}
-        convertedAmount={convertedAmount}
-        setConvertedAmount={setConvertedAmount}
+        // convertedAmount={convertedAmount}
+        // setConvertedAmount={setConvertedAmount}
         fromCurrency={fromCurrency}
         toCurrency={toCurrency}
         resetAllStates={resetAllStates}

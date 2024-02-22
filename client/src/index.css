@@ -1,22 +1,4 @@
-/* Some defaults for CSS */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box
-}
-
-* {
-  margin: 0;
-  font: inherit;
-}
-
-img, svg {
-  display: block;
-  max-width: 100%;
-}
-
-body{
+body {
   margin: 0; 
   padding: 0;
   font-family: Arial, sans-serif;
@@ -24,12 +6,8 @@ body{
   justify-content: center;
   align-items: center;
   height: 100vh;
-
   background-color: rgb(32, 45, 111);
-
 }
-
-
 
 
 .PopUpMenu{
@@ -87,3 +65,21 @@ body{
   background-color: #037bfc;
 }
  
+
+/* Some defaults for CSS */
+
+/* *,
+*::before,
+*::after {
+  box-sizing: border-box
+}
+
+* {
+  margin: 0;
+  font: inherit;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+} */
