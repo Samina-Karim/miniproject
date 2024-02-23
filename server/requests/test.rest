@@ -1,45 +1,28 @@
-### Gets all currencies
-GET http://localhost:3007/api/currencies/
-
 ### Gets the currency code from the currency model 
 ### and the country name from the country model
 GET http://localhost:3007/api/currencyCountryName/
 
-### Gets currency with id:2
-GET http://localhost:3007/api/currencies/656
+### Gets all currencies
+GET http://localhost:3007/api/currencies/
+
+
+### Gets currency with id:62
+GET http://localhost:3007/api/currencies/62
+
+### Changes currency rate of id:62 to 20
+PUT http://localhost:3007/api/currencies/62/20
+
+### Unknown endpoint
+POST http://localhost:3007/api/currency
+Content-Type: application/json
+
+    {
+      "currencyCode": "PKR",
+      "conversionRate": 200
+    }
 
 ###
 POST http://localhost:3007/api/currencies
-Content-Type: application/json
-
-    {
-      "currencyCode": "USD",
-      "countryId":2,
-      "conversionRate": 120.2
-    }
-
-###
-POST http://localhost:3007/api/currency
-Content-Type: application/json
-
-    {
-      "currencyCode": "EUR",
-      
-      "conversionRate": 125.6
-    }
-
-###
-POST http://localhost:3007/api/currency
-Content-Type: application/json
-
-    {
-      "currencyCode": "EUR",
-      "countryId":,
-      "conversionRate": 125.6
-    }
-
-###
-POST http://localhost:3007/api/currency
 Content-Type: application/json
 
 {
@@ -65,6 +48,9 @@ Content-Type: application/json
       "conversionRate": 0.69
     }
 
+
+### Gets all countries
+GET http://localhost:3007/api/countries
 
 ###
 POST http://localhost:3007/api/countries
@@ -115,7 +101,8 @@ POST http://localhost:3007/api/currencies
 Content-Type: application/json
 
     {
-      "currencyCode": "EUR",
+      "countryId":2,
+      "currencyCode": "USD",
       "conversionRate": 0.68
     }
 
@@ -126,5 +113,5 @@ GET http://localhost:3007/api/currenc
 ### Put request to update "conversionRate" of id:2 to 0.87/api/currencies/2/0.8
 PUT  http://localhost:3007/api/currencies/2/0.87
 
-### Delete request of id:2
-DELETE  http://localhost:3007/api/currencies/2
+###
+DELETE  http://localhost:3007/api/countries/6

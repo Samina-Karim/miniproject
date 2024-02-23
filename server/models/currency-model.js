@@ -2,6 +2,7 @@
 const  sequelize  = require("../config/sequelize");
 const { DataTypes, Model } = require("sequelize");
 const Country = require ("./country-model");
+const { timeStamp } = require("console");
 
 // Define our Currency Model
 
@@ -29,7 +30,7 @@ const Currency = sequelize.define("Currency", {
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
-  },
+  }
 
 );
 
@@ -38,7 +39,8 @@ const Currency = sequelize.define("Currency", {
 // Association between Currency and Country
 Currency.belongsTo(Country, {
     foreignKey: "countryId",
-    onDELETE:'CASCADE'
+    onDelete:'CASCADE',
+    hooks:'true'
   });
 
 
