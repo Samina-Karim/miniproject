@@ -46,14 +46,17 @@ countriesRouter.post('/', async(request, response) => {
        }, // Default values if the name is not found
   });
 
+  
   if (created) {
-      console.log('New CountryCode created:', postName);
+    console.log('New CountryCode created:', postName);
+    response.status(200).send(postName.name);
   } else {
-      console.log('CountryCode already present !', postName);
-     
-  }
-    
+    console.log('CountryCode already present !', postName);
+    response.status(404).send({error: 'country already present'});
+  } 
 })
+    
+
 
 
 /**
