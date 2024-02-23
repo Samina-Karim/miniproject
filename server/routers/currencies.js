@@ -121,11 +121,11 @@ currenciesRouter.post('/', async(request, response) => {
     });
 
   }
-
  
   console.log('New CurrencyCode created:');
  
-  response.json(newCurrencyCode)
+  // response.json(newCurrencyCode)
+  response.status(201).send(newCurrencyCode);
 })
 
 
@@ -142,17 +142,18 @@ currenciesRouter.put('/:id/:newRate', async(request, response) => {
   const id = Number(request.params.id);
   const newRate=Number(request.params.newRate);
 
- await Currency.update({conversionRate:newRate}, {
+ const updatedCurrency= await Currency.update({conversionRate:newRate}, {
     where: {
       id: id,
     }});
     
 
-  // if(updatedRate.id == undefined){
-  //   return response.status(404).send({ error: 'currency missing'})
-  // }
+  if(updatedCurrency == 0){
+    return response.status(404).send({ error: 'update failed'})
+  }
+  const desiredCurrency= await Currency.findByPk(id);
 
-  response.status(201).send();
+  response.status(201).send(desiredCurrency);
  
 })
 

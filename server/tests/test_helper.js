@@ -2,7 +2,7 @@
  * Provide the path to your test currency model, this model will be exactly the same as your Currency model, except...
  * It will not require the connection to Country.
  */
-const Currency = require('...') // Path to your TEST currency
+const Currency = require('../models/testCurrency-model') // Path to your TEST currency
 
 
 /**

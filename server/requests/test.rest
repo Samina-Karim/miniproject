@@ -124,6 +124,7 @@ Content-Type: application/json
 GET http://localhost:3007/api/currenc
 
 ### Put request to update "conversionRate" of id:2 to 0.87/api/currencies/2/0.8
+PUT  http://localhost:3007/api/currencies/2/0.87
 
 ### Delete request of id:2
 DELETE  http://localhost:3007/api/currencies/2
