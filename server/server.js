@@ -36,7 +36,6 @@ const PORT = 3007
 // }).catch((error)=> {
 //   console.log("Error connecting database",error);
 // }
-
 // )
 
 module.exports = server
