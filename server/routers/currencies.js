@@ -84,7 +84,7 @@ currenciesRouter.get('/:id', async(request, response) => {
  */
 currenciesRouter.post('/', async(request, response) => {
   console.log('received POST request')
-  const newCurrencyCode="";
+  let newCurrencyCode={};
   const currencyCode = request.body.currencyCode;
   const countryId = request.body.countryId;
   const conversionRate = request.body.conversionRate;
