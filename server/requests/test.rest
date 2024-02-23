@@ -61,7 +61,7 @@ Content-Type: application/json
 
     {
       "currencyCode": "EURO",
-      "countryId":145,
+      ### "countryId":145,
       "conversionRate": 0.69
     }
 

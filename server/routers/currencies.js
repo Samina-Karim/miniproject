@@ -1,7 +1,10 @@
 const currenciesRouter = require('express').Router()
 
 // We need to import the model we created, that is connected to the database via sequelize
-const Currency = require('../models/currency-model')
+// const Currency = require('../models/currency-model')
+// const testCurrency = require('../models/testCurrency-model')
+const Currency = process.env.NODE_ENV === "test" ? require ('../models/testCurrency-model') : require('../models/currency-model')
+const Country = require('../models/country-model')
 const { QueryTypes } = require('../config/sequelize');
 /**
  * DATA STORAGE
@@ -81,6 +84,7 @@ currenciesRouter.get('/:id', async(request, response) => {
  */
 currenciesRouter.post('/', async(request, response) => {
   console.log('received POST request')
+  const newCurrencyCode="";
   const currencyCode = request.body.currencyCode;
   const countryId = request.body.countryId;
   const conversionRate = request.body.conversionRate;
@@ -89,18 +93,34 @@ currenciesRouter.post('/', async(request, response) => {
   console.log("Country", countryId);
   console.log("Conversion Rate", conversionRate);
 
-  if ((currencyCode ==undefined) || (countryId==undefined) || (conversionRate == undefined)){
-    return response.status(404).send({ error: 'content missing' })
-  }
 
+  if (process.env.NODE_ENV === "development"){
 
+    const findCountryId = await Country.findByPk(countryId);
+    if (findCountryId == null){
+      return response.status(404).send({error: 'countryId does not exist in Country table'})
+    }
 
-  const newCurrencyCode = await Currency.create({  
+    if ((currencyCode ==undefined) || (countryId==undefined) || (conversionRate == undefined)){
+      return response.status(404).send({ error: 'content missing' })
+    }
+        newCurrencyCode = await Currency.create({  
         id: generateId(),
         currencyCode: currencyCode,
         countryId: countryId,
         conversionRate: conversionRate
-  });
+    });
+  } else if (process.env.NODE_ENV === "test"){
+    if ((currencyCode ==undefined)  || (conversionRate == undefined)){
+      return response.status(404).send({ error: 'content missing' })
+    }
+        newCurrencyCode = await Currency.create({  
+        id: generateId(),
+        currencyCode: currencyCode,
+        conversionRate: conversionRate
+    });
+
+  }
 
  
   console.log('New CurrencyCode created:');

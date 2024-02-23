@@ -17,27 +17,29 @@ const sequelize = require('./config/sequelize')
  */
 app.use(cors())
 app.use(express.json())
-
-
 app.use(middleware.morganLogger)
 app.use('/api/currencies', currenciesRouter)  // Add currencies routes
 app.use('/api/countries', countriesRouter)  // Add currencies routes
 app.use('/api/currencyCountryName', currencyCountryNameRouter)  // Add currencies routes
 app.use(middleware.unknownEndpoint)// Added middleware for unknown
 
+console.log(`We are in environment: ${process.env.NODE_ENV}`)
+
 // Starts our server at PORT 3001
 const PORT = 3007
-sequelize.sync().then(() => {
+// sequelize.sync().then(() => {
   console.log("Database connected");
-  app.listen(PORT, () => {
+  const server=app.listen(PORT, () => {
     console.log(`Server running on port: ${PORT}`)
   })
 
-}).catch((error)=> {
-  console.log("Error connecting database",error);
-}
+// }).catch((error)=> {
+//   console.log("Error connecting database",error);
+// }
 
-)
+// )
+
+module.exports = server
 
 
 
