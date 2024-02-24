@@ -28,13 +28,7 @@ jobs:
             DB_USER: samina
             DB_PASSWORD: JgIhH6MTVZVwwaMMpGPy16KJehiN5Yyu
         working-directory: ./server
-        run: npm run test
+        run: npm run testServer
       - name: run frontend test
         working-directory: ./client
         run:  npm run test
-
-        
-      - name: running tests
-        run: npm test
-      - name: build code
-        run: npm run build 
