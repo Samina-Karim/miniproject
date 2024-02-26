@@ -1,7 +1,7 @@
 // Import our sequelize connection, so we can make our model
 const  sequelize  = require('../config/sequelize')
 const { DataTypes, Model } = require('sequelize')
-const Currency = require ("./currency-model");
+// const Currency = require ("./currency-model");
 
 // Define our Currency Model
 // class Country extends Model {}
