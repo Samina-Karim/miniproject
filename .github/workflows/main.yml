@@ -36,5 +36,8 @@ jobs:
             DB_NAME: ${{ secrets.DB_NAME }}
             DB_USER: ${{ secrets.DB_USER }}
             DB_PASSWORD: ${{ secrets.PASSWORD }}
-        run: npm run test
-     
+        run: npm run test  
+      - name: run server deployment hook on render
+        run: curl ${{ secrets.SERVER_DEPLOYMENT_HOOK }}
+      - name: run client deployment hook on render
+        run: curl ${{ secrets.CLIENT_DEPLOYMENT_HOOK }}
