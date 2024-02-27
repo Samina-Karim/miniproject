@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
-const baseUrl = `http://localhost:3007/api/currencies`
+const baseUrl = `/api/currencies`
 // Gets all currencies from the API
 const getCurrenciesAPI = () => {
     const request = axios.get(`${baseUrl}`);   
