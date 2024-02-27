@@ -20,13 +20,13 @@ jobs:
         run: npm install
       - name: run backend tests
         env:
-            PORT: 3007 
-            DB_URL: postgres://samina:JgIhH6MTVZVwwaMMpGPy16KJehiN5Yyu@dpg-cmnea1v109ks739ep0d0-a.oregon-postgres.render.com/dbname_f6sq
-            DB_HOST: dpg-cmnea1v109ks739ep0d0-a.oregon-postgres.render.com
-            DB_PORT: 5432
-            DB_NAME: dbname_f6sq
-            DB_USER: samina
-            DB_PASSWORD: JgIhH6MTVZVwwaMMpGPy16KJehiN5Yyu
+            PORT: ${{ secrets.PORT }} 
+            DB_URL: ${{ secrets.DB_URL }}
+            DB_HOST: ${{ secrets.DB_HOST }}
+            DB_PORT: ${{ secrets.DB_PORT }}
+            DB_NAME: ${{ secrets.DB_NAME }}
+            DB_USER: ${{ secrets.DB_USER }}
+            DB_PASSWORD: ${{ secrets.PASSWORD }}
         working-directory: ./server
         run: npm run testServer
       - name: run frontend test
