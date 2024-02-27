@@ -1,0 +1,40 @@
+name: miniproject_deployment_pipeline
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  deployment:
+    name: deployment_job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checking-out code
+        uses: actions/checkout@v4
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.0.2 
+        with: 
+           node-version: '18.x'
+      - name: installing dependencies server
+        working-directory: ./server
+        run: npm install
+      - name: installing dependencies client
+        working-directory: ./client
+        run: npm install
+      - name: run frontend test
+        working-directory: ./client
+        run:  npm run test
+      - name: run backend tests
+        working-directory: ./server
+        env:
+            PORT: ${{ secrets.PORT }} 
+            DB_URL: ${{ secrets.DB_URL }}
+            DB_HOST: ${{ secrets.DB_HOST }}
+            DB_PORT: ${{ secrets.DB_PORT }}
+            DB_NAME: ${{ secrets.DB_NAME }}
+            DB_USER: ${{ secrets.DB_USER }}
+            DB_PASSWORD: ${{ secrets.PASSWORD }}
+        run: npm run test
+     

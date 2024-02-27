@@ -1,6 +1,6 @@
 // Import our sequelize connection, so we can make our model
 const  sequelize  = require("../config/sequelize");
-const { DataTypes, Model } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const Country = require ("./country-model");
 const { timeStamp } = require("console");
 
