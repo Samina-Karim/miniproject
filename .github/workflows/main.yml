@@ -19,6 +19,7 @@ jobs:
         working-directory: ./server
         run: npm install
       - name: run backend tests
+        working-directory: ./server
         env:
             PORT: ${{ secrets.PORT }} 
             DB_URL: ${{ secrets.DB_URL }}
@@ -27,7 +28,6 @@ jobs:
             DB_NAME: ${{ secrets.DB_NAME }}
             DB_USER: ${{ secrets.DB_USER }}
             DB_PASSWORD: ${{ secrets.PASSWORD }}
-        working-directory: ./server
         run: npm run testServer
       - name: run frontend test
         working-directory: ./client
