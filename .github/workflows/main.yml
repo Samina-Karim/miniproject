@@ -18,6 +18,12 @@ jobs:
       - name: installing dependencies server
         working-directory: ./server
         run: npm install
+      - name: installing dependencies client
+        working-directory: ./client
+        run: npm install
+      - name: run frontend test
+        working-directory: ./client
+        run:  npm run test
       - name: run backend tests
         working-directory: ./server
         env:
@@ -29,6 +35,4 @@ jobs:
             DB_USER: ${{ secrets.DB_USER }}
             DB_PASSWORD: ${{ secrets.PASSWORD }}
         run: npm run testServer
-      - name: run frontend test
-        working-directory: ./client
-        run:  npm run test
+     
