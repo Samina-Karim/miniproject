@@ -4,7 +4,7 @@
   "description": "Package manager for the fourth Assignment in the Mini Project Roadmap",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "cross-env NODE_ENV=development node server.js",
     "devServer": "cross-env NODE_ENV=development nodemon server.js",
     "testServer": "cross-env NODE_ENV=test nodemon server.js",
     "test": "cross-env NODE_ENV=test jest --verbose -runInBand"
